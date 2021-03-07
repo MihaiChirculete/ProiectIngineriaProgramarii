@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  mqtt_broker:
+    build: .
+    ports:
+      - "8000:80"
+      - "4000:443"
+    volumes:
+      - ./mqtt_broker_mount/:/root/proiect/
+    tty: true
+    stdin_open: true
+
+  device:
+    build: .
+    ports:
+      - "8001:80"
+      - "4001:443"
+    volumes:
+      - ./device_mount/:/root/proiect/
+    tty: true
+    stdin_open: true

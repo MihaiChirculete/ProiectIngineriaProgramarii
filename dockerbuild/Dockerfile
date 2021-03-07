@@ -27,8 +27,11 @@ RUN apt-get -y install vim
 RUN apt-get -y install wget
 RUN apt-get -y install curl
 
-COPY setup-pistache.sh /root/
+RUN mkdir -p /root/install/
+COPY setup-pistache.sh /root/install/
 
-RUN chmod +x /root/setup-pistache.sh
+RUN chmod +x /root/install/setup-pistache.sh
 
-RUN /root/setup-pistache.sh
+RUN /root/install/setup-pistache.sh
+
+RUN mkdir -p /root/proiect/
