@@ -9,6 +9,15 @@ Daca sunteti pe linux rulati `./build.sh`
 
 Daca sunteti pe windows si folositi CMD, intrati in folderul `dockerbuild/` si rulati: `docker build -t "proiect_ip:1.0.0" .`
 
+# Cum construim imaginea cu `docker-compose`?
+Rulati `docker-compose build`
+
+# Cum rulam containerele cu `docker-compose`?
+Rulati `docker-compose up`
+
+# Cum listam containerele lansate cu `docker-compose`?
+In folderul unde este si fisierul `docker-compose.yml` rulati `docker-compose ps`
+
 # Cum vedem ce imagini construite avem in docker?
 Deschideti un terminal/consola si rulati `docker images`.
 
