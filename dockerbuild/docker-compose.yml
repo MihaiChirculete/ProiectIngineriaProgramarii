@@ -3,7 +3,7 @@ services:
   mqtt_broker:
     build: .
     ports:
-      - "8000:80"
+      - "9084:9084"
       - "4000:443"
     volumes:
       - ./mqtt_broker_mount/:/root/proiect/
@@ -13,7 +13,7 @@ services:
   device:
     build: .
     ports:
-      - "8001:80"
+      - "9085:9085"
       - "4001:443"
     volumes:
       - ./device_mount/:/root/proiect/
