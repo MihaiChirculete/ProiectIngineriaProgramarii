@@ -6,7 +6,8 @@ services:
       - "9084:9084"
       - "4000:443"
     volumes:
-      - ./mqtt_broker_mount/:/root/proiect/
+      - ./mqtt_broker_mount/:/root/broker_data/
+      - ./common_mount/:/root/app_common/
     tty: true
     stdin_open: true
 
@@ -16,7 +17,8 @@ services:
       - "9085:9085"
       - "4001:443"
     volumes:
-      - ./device_mount/:/root/proiect/
+      - ./device_mount/:/root/device_data/
+      - ./common_mount/:/root/app_common/
     tty: true
     stdin_open: true
 
@@ -26,6 +28,7 @@ services:
       - "9086:9086"
       - "4002:443"
     volumes:
-      - ./device_mount:/root/proiect/
+      - ./device_mount/:/root/device_data/
+      - ./common_mount/:/root/app_common/
     tty: true
     stdin_open: true
