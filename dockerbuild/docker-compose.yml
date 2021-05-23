@@ -19,3 +19,13 @@ services:
       - ./device_mount/:/root/proiect/
     tty: true
     stdin_open: true
+
+  device2:
+    build: .
+    ports:
+      - "9086:9086"
+      - "4002:443"
+    volumes:
+      - ./device_mount:/root/proiect/
+    tty: true
+    stdin_open: true
