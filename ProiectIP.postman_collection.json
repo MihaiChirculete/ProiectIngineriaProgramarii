@@ -1,0 +1,641 @@
+{
+	"info": {
+		"_postman_id": "123ccbab-e6ad-498b-82b3-fb3e68abd86f",
+		"name": "ProiectIP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ENDPOINT Ready",
+			"item": [
+				{
+					"name": "Ready",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}:{{port}}/ready",
+							"host": [
+								"{{host_url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"ready"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.collectionVariables.set(\"exemptFromContentTypeCheck\", false);"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "ENDPOINT Auth",
+			"item": [
+				{
+					"name": "Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(204);    // Daca nu intoarceti niciun continut dar vreti status de ok, ar trb sa fol 204",
+									"});",
+									"",
+									"pm.test(\"Cookie test\", function() {",
+									"    pm.expect(pm.cookies.has('lang')).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"exemptFromContentTypeCheck\", true);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}:{{port}}/auth",
+							"host": [
+								"{{host_url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ENDPOINT User",
+			"item": [
+				{
+					"name": "Set user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}:{{port}}/setUser/:username/:inaltime/:masa",
+							"host": [
+								"{{host_url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"setUser",
+								":username",
+								":inaltime",
+								":masa"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "Mihai"
+								},
+								{
+									"key": "inaltime",
+									"value": "186"
+								},
+								{
+									"key": "masa",
+									"value": "80"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set user (without username)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(404);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}:{{port}}/setUser/:inaltime/:masa",
+							"host": [
+								"{{host_url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"setUser",
+								":inaltime",
+								":masa"
+							],
+							"variable": [
+								{
+									"key": "inaltime",
+									"value": "186"
+								},
+								{
+									"key": "masa",
+									"value": "80"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set user (without inaltime)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(404);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}:{{port}}/setUser/:username/:masa",
+							"host": [
+								"{{host_url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"setUser",
+								":username",
+								":masa"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "Mihai"
+								},
+								{
+									"key": "masa",
+									"value": "80"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set user (without masa)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(404);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}:{{port}}/setUser/:username/:inaltime",
+							"host": [
+								"{{host_url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"setUser",
+								":username",
+								":inaltime"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "Mihai"
+								},
+								{
+									"key": "inaltime",
+									"value": "186"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}:{{port}}/getUser",
+							"host": [
+								"{{host_url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"getUser"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.collectionVariables.set(\"exemptFromContentTypeCheck\", false);"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "ENDPOINT Settings",
+			"item": [
+				{
+					"name": "Set setting \"suntLegati\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}:{{port}}/settings/:settingName/:value",
+							"host": [
+								"{{host_url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"settings",
+								":settingName",
+								":value"
+							],
+							"variable": [
+								{
+									"key": "settingName",
+									"value": "suntLegati"
+								},
+								{
+									"key": "value",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve setting \"suntLegati\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}:{{port}}/settings/:settingName",
+							"host": [
+								"{{host_url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"settings",
+								":settingName"
+							],
+							"variable": [
+								{
+									"key": "settingName",
+									"value": "suntLegati"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set setting \"miscare\" Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}:{{port}}/settings/:settingName/:value",
+							"host": [
+								"{{host_url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"settings",
+								":settingName",
+								":value"
+							],
+							"variable": [
+								{
+									"key": "settingName",
+									"value": "miscare"
+								},
+								{
+									"key": "value",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve setting \"miscare\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}:{{port}}/settings/:settingName",
+							"host": [
+								"{{host_url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"settings",
+								":settingName"
+							],
+							"variable": [
+								{
+									"key": "settingName",
+									"value": "suntLegati"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set unimplemented setting",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}:{{port}}/settings/:settingName/:value",
+							"host": [
+								"{{host_url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"settings",
+								":settingName",
+								":value"
+							],
+							"variable": [
+								{
+									"key": "settingName",
+									"value": "power_save"
+								},
+								{
+									"key": "value",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.collectionVariables.set(\"exemptFromContentTypeCheck\", false);"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"if(pm.collectionVariables.get(\"exemptFromContentTypeCheck\") == false)",
+					"    pm.test(\"Content-Type JSON Check\", function(){",
+					"        pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+					"    })"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host_url",
+			"value": "localhost"
+		},
+		{
+			"key": "port",
+			"value": "9084"
+		},
+		{
+			"key": "exemptFromContentTypeCheck",
+			"value": ""
+		}
+	]
+}
