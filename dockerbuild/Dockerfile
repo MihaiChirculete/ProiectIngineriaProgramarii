@@ -33,5 +33,3 @@ COPY setup-pistache.sh /root/install/
 RUN chmod +x /root/install/setup-pistache.sh
 
 RUN /root/install/setup-pistache.sh
-
-RUN mkdir -p /root/proiect/
