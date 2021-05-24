@@ -616,10 +616,10 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					"if(pm.collectionVariables.get(\"exemptFromContentTypeCheck\") == false)",
-					"    pm.test(\"Content-Type JSON Check\", function(){",
-					"        pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
-					"    })"
+					"// if(pm.collectionVariables.get(\"exemptFromContentTypeCheck\") == false)",
+					"//     pm.test(\"Content-Type JSON Check\", function(){",
+					"//         pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+					"//     })"
 				]
 			}
 		}
